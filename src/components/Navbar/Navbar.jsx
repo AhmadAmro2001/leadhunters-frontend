@@ -33,7 +33,7 @@ export default function Navbar() {
         </div>
         <ul className='md:flex hidden items-center md:w-[50%]   justify-between'>
           {links.map((link) => (
-            <li key={link.name} className='cursor-pointer'>
+            <li key={link.name} className='cursor-pointer text-xl'>
               {link.name === "About" ? <HashLink smooth to={link.href}>{link.name}</HashLink> :<Link to={link.href}>{link.name}</Link>}
             </li>
           ))}
