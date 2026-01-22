@@ -4,6 +4,7 @@ import OurStory from '../OurStory/OurStory'
 import OurMission from '../OurMission/OurMission'
 import OurCore from '../OurCore/OurCore'
 import WhyUs from '../WhyUs/WhyUs'
+import AboutUsFooter from '../AboutUsFooter/AboutUsFooter'
 export default function AboutUsPage() {
     
   return <>
@@ -12,5 +13,6 @@ export default function AboutUsPage() {
       <OurMission />
       <OurCore />
       <WhyUs />
+      <AboutUsFooter />
     </>
 }

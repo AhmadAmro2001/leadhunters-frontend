@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
 import HomePage from './components/HomePage/HomePage'
 import AboutUsPage from './components/AboutUsPage/AboutUsPage'
+import ServicesPage from './components/ServicesPage/ServicesPage'
 
 function App() {
   
@@ -14,7 +15,7 @@ function App() {
       {index:true, element:<HomePage/>},
       {path:'home', element:<HomePage/>},
       {path:'aboutus', element:<AboutUsPage/>},
-      {path:'contact', element:<h1>Contact</h1>}
+      {path:'services', element:<ServicesPage/>},
     ]
   }])
 

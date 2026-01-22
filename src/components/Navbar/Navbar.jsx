@@ -14,7 +14,7 @@ export default function Navbar() {
   const links = [
     { name: "Home", href: "/home" },
     { name: "About", href: "/#aboutus" },
-    { name: "Services", href: "#services" },
+    { name: "Services", href: "/services" },
     { name: "Offer's Price", href: "#offers" },
     { name: "Contact", href: "#contact" },
   ];
@@ -34,7 +34,7 @@ export default function Navbar() {
         <ul className='md:flex hidden items-center md:w-[50%]   justify-between'>
           {links.map((link) => (
             <li key={link.name} className='cursor-pointer text-xl'>
-              {link.name === "About" ? <HashLink smooth to={link.href}>{link.name}</HashLink> :<Link to={link.href}>{link.name}</Link>}
+              {link.name === "About" ? <HashLink onClick={()=>{setOpen(false)}} smooth to={link.href}>{link.name}</HashLink> :<Link onClick={()=>{setOpen(false)}} to={link.href}>{link.name}</Link>}
             </li>
           ))}
         </ul>
@@ -48,20 +48,26 @@ export default function Navbar() {
             <span className="text-xl text-white  ">X</span>
           </button>
         </div>}
-        
-      </nav>
-      
+
+
         {open && (
-          <div className='bg-blue-900 text-white py-3'>
-          <ul className='flex flex-col md:hidden items-center    justify-between'>
+          <div className='bg-blue-900 text-white py-3 absolute top-18 left-0 right-0'>
+          <ul className='flex flex-col md:hidden items-center  mt-5  justify-between'>
           {links.map((link) => (
-            <li key={link.name} className='cursor-pointer'>
-              <Link href={link.href}>{link.name}</Link>
+            // <li key={link.name} className='cursor-pointer '>
+            //   <Link href={link.href}>{link.name}</Link>
+            // </li>
+            <li key={link.name} className='cursor-pointer mt-2'>
+              {link.name === "About" ? <HashLink onClick={()=>{setOpen(false)}} smooth to={link.href}>{link.name}</HashLink> :<Link onClick={()=>{setOpen(false)}} to={link.href}>{link.name}</Link>}
             </li>
           ))}
         </ul>
         </div>
         )}
+        
+      </nav>
+      
+        
       
       
     </>

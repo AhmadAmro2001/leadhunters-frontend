@@ -3,7 +3,7 @@ export default function HomeFirstSection() {
     
   return <>
       <div
-        className="relative min-h-screen bg-cover bg-center flex items-center justify-center"
+        className="relative mt-24 md:mt-0 md:min-h-screen  bg-cover bg-center flex  items-center justify-center"
         style={{
           backgroundImage: `url("https://res.cloudinary.com/du4n45qq0/image/upload/v1768953692/samples/cup-on-a-table.jpg")`,
         }}
@@ -12,9 +12,9 @@ export default function HomeFirstSection() {
         <div className="absolute inset-0 bg-linear-to-r from-blue-900/80 via-blue-900/80 to-blue-900/80" />
 
 
-        <div className="relative z-10 p-10 text-white text-left max-w-4xl ">
-          <h1 className="text-7xl font-semibold mb-2">Transform Your Real Estate Business with Quality Leads</h1>
-          <p className="text-2xl mb-6">
+        <div className="relative z-10 p-10 text-white text-left  md:max-w-4xl ">
+          <h1 className="text-3xl md:text-7xl font-semibold mb-2">Transform Your Real Estate Business with Quality Leads</h1>
+          <p className="md:text-2xl mb-6">
             We connect real estate brokers and agencies with pre-qualified leads
             and professional cold-calling agents to accelerate your growth.
           </p>
