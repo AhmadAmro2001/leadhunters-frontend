@@ -12,11 +12,11 @@ export default function Navbar() {
   // }, []);
 
   const links = [
-    { name: "Home", href: "/home" },
+    { name: "Home", href: "home" },
     { name: "About", href: "/#aboutus" },
-    { name: "Services", href: "/services" },
-    { name: "Offer's Price", href: "#offers" },
-    { name: "Contact", href: "#contact" },
+    { name: "Services", href: "services" },
+    { name: "Offer's Price", href: "offers" },
+    { name: "Contact", href: "contact" },
   ];
     
   return <>
