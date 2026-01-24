@@ -103,7 +103,7 @@ export default function ContactSecondSection() {
                     Select an option
                   </option>
 
-                  {options.map((op) => (
+                  {options2.map((op) => (
                     <option key={op} value={op}>
                       {op}
                     </option>
