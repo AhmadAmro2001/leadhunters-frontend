@@ -13,7 +13,7 @@ export default function ContactSecondSection() {
   const sendData = (formData)=>{
     setLoading(true);
     setError(null);
-    axios.post("https://leadhunters-backend.onrender.com/messages/send-message",formData)
+    axios.post("https://leadhunters-backend-rhp2.onrender.com/messages/send-message",formData)
     .then((res)=>{
       let {data} = res;
 
