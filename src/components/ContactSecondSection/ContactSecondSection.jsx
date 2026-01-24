@@ -1,7 +1,32 @@
+import axios from "axios";
+import { Formik, useFormik } from "formik";
 import React, { useEffect, useState } from "react";
+import * as Yup from "yup";
 export default function ContactSecondSection() {
   const [range, setRange] = useState("");
   const [source, setSource] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+  
+
+  const sendData = (formData)=>{
+    setLoading(true);
+    setError(null);
+    axios.post("https://leadhunters-backend.onrender.com/messages/send-message",formData)
+    .then((res)=>{
+      let {data} = res;
+
+      if(data.message === "Message sent successfully."){
+        setSuccess(true);
+        setLoading(false);
+      }
+    })
+    .catch((err)=>{
+      setError(true);
+      setLoading(false);
+    })
+  }
 
   const options = [
     "1-10 leads per day",
@@ -20,6 +45,26 @@ export default function ContactSecondSection() {
     "Google Search",
     "Other",
   ];
+
+  let myForm = useFormik({
+    initialValues: {
+            fullName: "",
+            email: "",
+            mobile: "",
+            leadNo:"",
+            hearAboutUs:"",
+            message:"",
+        },
+    validationSchema: Yup.object({
+            fullName: Yup.string().min(3, "not less than 3").required("Required"),
+            email: Yup.string().email("invalid email").required("Required"),
+            mobile: Yup.string().required("Required"),
+            leadNo: Yup.string().required("Required"),
+            hearAboutUs: Yup.string().required("Required"),
+            message: Yup.string()
+        }),
+    onSubmit: sendData
+  })
   return (
     <>
       <div className="container mx-auto my-18">
@@ -31,12 +76,17 @@ export default function ContactSecondSection() {
             <p className="text-gray-600 mb-3">
               Fill out the form below and we'll get back to you within 24 hours
             </p>
-            <form action="">
+            <form onSubmit={myForm.handleSubmit}>
               <div className="flex flex-col mb-4">
-                <label className="mb-2 font-semibold" htmlFor="">
-                  Full Name
+                <label className="mb-2 font-semibold flex  items-center" htmlFor="fullName">
+                  Full Name {myForm.errors.fullName && myForm.touched.fullName?<div className="pl-2 text-sm  text-red-600 " role="alert">
+                    <span className="font-medium">*</span> 
+                </div> : null}
+                  
                 </label>
                 <input
+                  name="fullName"
+                  onBlur={myForm.handleBlur} onChange={myForm.handleChange} value={myForm.values.fullName}
                   type="text"
                   placeholder="John Doe"
                   className="border rounded border-gray-300 p-1 outline-none transition-all duration-200 ease-in-out focus:shadow-lg focus:border-gray-400 focus:ring-2 focus:ring-gray-300"
@@ -44,20 +94,28 @@ export default function ContactSecondSection() {
               </div>
               <div className="flex flex-col md:flex-row mb-4 gap-4">
                 <div className="flex flex-col w-full">
-                  <label className="mb-2 font-semibold" htmlFor="">
-                    Email Address
+                  <label className="mb-2 font-semibold flex  items-center" htmlFor="email">
+                    Email Address {myForm.errors.email && myForm.touched.email?<div className="pl-2 text-sm  text-red-600 " role="alert">
+                    <span className="font-medium">*</span> 
+                </div> : null}
                   </label>
                   <input
+                    name="email"
+                    onBlur={myForm.handleBlur} onChange={myForm.handleChange} value={myForm.values.email}
                     placeholder="john@example.com"
                     className="border rounded border-gray-300 p-1 outline-none transition-all duration-200 ease-in-out focus:shadow-lg focus:border-gray-400 focus:ring-2 focus:ring-gray-300"
                     type="text"
                   />
                 </div>
                 <div className="flex flex-col w-full">
-                  <label className="mb-2 font-semibold" htmlFor="">
-                    Mobile Phone
+                  <label className="mb-2 font-semibold flex  items-center" htmlFor="mobile">
+                    Mobile Phone {myForm.errors.mobile && myForm.touched.mobile?<div className="pl-2 text-sm  text-red-600 " role="alert">
+                    <span className="font-medium">*</span> 
+                </div> : null}
                   </label>
                   <input
+                    name="mobile"
+                    onBlur={myForm.handleBlur} onChange={myForm.handleChange} value={myForm.values.mobile}
                     placeholder="+1 (555) 000-000"
                     className="border rounded border-gray-300 p-1 outline-none transition-all duration-200 ease-in-out focus:shadow-lg focus:border-gray-400 focus:ring-2 focus:ring-gray-300"
                     type="text"
@@ -65,12 +123,17 @@ export default function ContactSecondSection() {
                 </div>
               </div>
               <div className="flex flex-col mb-4">
-                <label className="mb-2 font-semibold" htmlFor="">
-                  How many leads are you willing to get daily?
+                <label className="mb-2 font-semibold flex  items-center" htmlFor="leadNo">
+                  How many leads are you willing to get daily? {myForm.errors.leadNo && myForm.touched.leadNo?<div className="pl-2 text-sm  text-red-600 " role="alert">
+                    <span className="font-medium">*</span> 
+                </div> : null}
                 </label>
                 <select
-                  value={range}
-                  onChange={(e) => setRange(e.target.value)}
+                  name="leadNo"
+                  
+                  value={myForm.values.leadNo}
+                  onChange={myForm.handleChange}
+                  onBlur={myForm.handleBlur}
                   className={`w-full border rounded border-gray-300 p-2 bg-white outline-none
                               transition-all duration-200 ease-in-out
                               focus:shadow-lg focus:border-gray-400 focus:ring-2 focus:ring-gray-300
@@ -88,12 +151,16 @@ export default function ContactSecondSection() {
                 </select>
               </div>
               <div className="flex flex-col mb-4">
-                <label className="mb-2 font-semibold" htmlFor="">
-                  Where did you hear about us
+                <label className="mb-2 font-semibold" htmlFor="hearAboutUs">
+                  Where did you hear about us? {myForm.errors.hearAboutUs && myForm.touched.hearAboutUs?<div className="p-2 text-sm  text-red-600 " role="alert">
+                    <span className="font-medium">*</span> 
+                </div> : null} 
                 </label>
                 <select
-                  value={source}
-                  onChange={(e) => setSource(e.target.value)}
+                  name="hearAboutUs"
+                  value={myForm.values.hearAboutUs}
+                  onChange={myForm.handleChange}
+                  onBlur={myForm.handleBlur}
                   className={`w-full border rounded border-gray-300 p-2 bg-white outline-none
           transition-all duration-200 ease-in-out
           focus:shadow-lg focus:border-gray-400 focus:ring-2 focus:ring-gray-300
@@ -111,18 +178,21 @@ export default function ContactSecondSection() {
                 </select>
               </div>
               <div className="flex flex-col mb-4">
-                <label className="mb-2 font-semibold" htmlFor="">
+                <label className="mb-2 font-semibold" htmlFor="message">
                   Additional Message (Optional)
                 </label>
                 <textarea
+                  name="message"
+                  value={myForm.values.message}
+                  onChange={myForm.handleChange}
                   className="border rounded border-gray-300 p-1 outline-none transition-all duration-200 ease-in-out focus:shadow-lg focus:border-gray-400 focus:ring-2 focus:ring-gray-300"
                   type="text"
                   placeholder="Tell us more about your needs..."
                 />
               </div>
 
-              <button className="w-full text-white bg-blue-500 py-2 rounded-xl cursor-pointer">
-                Submit Message
+              <button type="submit" className="w-full text-white bg-blue-500 py-2 rounded-xl cursor-pointer">
+                {loading ? <i className='fa fa-spinner fa-spin mx-3 text-white text-2xl'></i> : "Submit Message"}
               </button>
             </form>
           </div>
@@ -173,7 +243,7 @@ export default function ContactSecondSection() {
                     <div>
                       <p className="mb-3">8:00 AM - 6:00 PM</p>
                       <p className="mb-3">9:00 AM - 2:00 PM</p>
-                      <p className="mb-3">Closed</p>
+                      <p className="mb-3">Off</p>
                     </div>
                   </div>
             </div>

@@ -39,12 +39,12 @@ export default function Navbar() {
           ))}
         </ul>
         {!open &&<div className='flex md:hidden  '>
-          <button onClick={()=>{setOpen(true)}}  className='border p-1 rounded-lg '>
+          <button onClick={()=>{setOpen(true)}}  className='border w-10 h-10 rounded-lg '>
             <span className="text-2xl text-white  ">☰</span>
           </button>
         </div>}
         {open &&<div className='flex md:hidden  '>
-          <button onClick={()=>{setOpen(false)}}  className='border p-1 rounded-lg '>
+          <button onClick={()=>{setOpen(false)}}  className='border w-10 h-10 rounded-lg '>
             <span className="text-xl text-white  ">X</span>
           </button>
         </div>}

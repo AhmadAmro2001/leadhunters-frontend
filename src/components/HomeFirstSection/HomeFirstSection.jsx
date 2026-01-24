@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 export default function HomeFirstSection() {
+
+  const navigate = useNavigate();
+
+  const  handleClick = ()=>{
+    navigate("/contact");
+  }
     
   return <>
       <div
@@ -18,7 +25,7 @@ export default function HomeFirstSection() {
             We connect real estate brokers and agencies with pre-qualified leads
             and professional cold-calling agents to accelerate your growth.
           </p>
-          <button className="border-0 bg-blue-600 px-4 py-2 rounded-lg">
+          <button onClick={handleClick} className="border-0 bg-blue-600 px-4 py-2 rounded-lg cursor-pointer">
             Get Started Today <i className="fa-solid fa-arrow-right"></i>
           </button>
         </div>

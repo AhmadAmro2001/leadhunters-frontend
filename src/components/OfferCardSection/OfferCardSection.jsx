@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 export default function OfferCardSection({ data }) {
 
-  console.log(data);
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/contact");
+  };
   
   return (
     <>
@@ -40,7 +45,7 @@ export default function OfferCardSection({ data }) {
                   
                 </ul>
 
-                <button className="text-white bg-blue-800 mt-5 py-2 px-5 rounded-lg">
+                <button onClick={handleClick} className="text-white bg-blue-800 mt-5 py-2 px-5 rounded-lg cursor-pointer">
                   Get Started <i className="fa-solid fa-arrow-right"></i>
                 </button>
               </div>
