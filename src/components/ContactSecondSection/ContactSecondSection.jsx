@@ -208,7 +208,7 @@ export default function ContactSecondSection() {
                 </div>
                 <div>
                   <h3 className="text-lg text-blue-900">Email</h3>
-                  <p className="text-gray-600">info@leadhunters.com</p>
+                  <p className="text-gray-600">info@leadhunterscc.com</p>
                 </div>
               </div>
               <div className="flex align-middle gap-3 mb-5">
