@@ -10,7 +10,7 @@ export default function HomeFirstSection() {
     
   return <>
       <div
-        className="relative mt-24 md:mt-0 md:min-h-screen  bg-cover bg-center flex  items-center justify-center"
+        className="relative mt-32 md:mt-0 md:min-h-screen  bg-cover bg-center flex  items-center justify-center"
         style={{
           backgroundImage: `url("https://res.cloudinary.com/du4n45qq0/image/upload/v1768953692/samples/cup-on-a-table.jpg")`,
         }}

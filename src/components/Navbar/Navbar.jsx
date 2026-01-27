@@ -30,7 +30,7 @@ export default function Navbar() {
             </div>
           </div>
           <h1 className='md:text-2xl font-semibold'>Lead Hunters</h1> */}
-          <img src="https://res.cloudinary.com/du4n45qq0/image/upload/v1769496842/leadhunters_logo_white_transparent_eibsax.png" className='  w-40' alt="" />
+          <img src="https://res.cloudinary.com/du4n45qq0/image/upload/v1769496842/leadhunters_logo_white_transparent_eibsax.png" className='w-32  md:w-40' alt="" />
         </div>
         <ul className='md:flex hidden items-center md:w-[50%]   justify-between'>
           {links.map((link) => (
