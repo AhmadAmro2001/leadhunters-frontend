@@ -52,7 +52,7 @@ export default function Navbar() {
 
 
         {open && (
-          <div className='bg-blue-900 text-white py-3 absolute top-18 left-0 right-0'>
+          <div className='bg-blue-900 text-white py-3 absolute top-32 left-0 right-0'>
           <ul className='flex flex-col md:hidden items-center  mt-5  justify-between'>
           {links.map((link) => (
             // <li key={link.name} className='cursor-pointer '>
