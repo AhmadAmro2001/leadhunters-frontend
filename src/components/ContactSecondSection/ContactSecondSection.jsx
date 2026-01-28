@@ -217,7 +217,7 @@ export default function ContactSecondSection() {
                 </div>
                 <div>
                   <h3 className="text-lg text-blue-900">Phone</h3>
-                  <p className="text-gray-600">+1 (555) 123-4567</p>
+                  <p className="text-gray-600">+1 (973) 330-8591</p>
                 </div>
               </div>
               <div className="flex align-middle gap-3 mb-5">
